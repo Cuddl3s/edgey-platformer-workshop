@@ -1,0 +1,123 @@
+[gd_scene load_steps=15 format=3 uid="uid://cmi73fvapdnnr"]
+
+[ext_resource type="Texture2D" uid="uid://dk1j1mo3w774h" path="res://assets/textures/other/End (Pressed) (64x64).png" id="1_sn7bv"]
+[ext_resource type="Script" path="res://scripts/exit.gd" id="1_yld26"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp1wh"]
+atlas = ExtResource("1_sn7bv")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbgx3"]
+atlas = ExtResource("1_sn7bv")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2r46"]
+atlas = ExtResource("1_sn7bv")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjgbo"]
+atlas = ExtResource("1_sn7bv")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbqr7"]
+atlas = ExtResource("1_sn7bv")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ydac"]
+atlas = ExtResource("1_sn7bv")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq5i5"]
+atlas = ExtResource("1_sn7bv")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48ef5"]
+atlas = ExtResource("1_sn7bv")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ec2b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp1wh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbgx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2r46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjgbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbqr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ydac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cq5i5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48ef5")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lh8cj"]
+radius = 6.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_em334"]
+size = Vector2(34, 8)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d0ojy"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 16.0
+angle_min = 30.0
+angle_max = 107.0
+direction = Vector3(2.08165e-12, -1, 2.08165e-12)
+initial_velocity_min = 60.0
+initial_velocity_max = 85.54
+gravity = Vector3(2.08165e-12, 90, 2.08165e-12)
+damping_min = 60.0
+damping_max = 60.0
+scale_min = 2.0
+scale_max = 2.0
+color = Color(1, 0.270588, 0.431373, 1)
+turbulence_noise_strength = 6.27
+
+[node name="Exit" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_yld26")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1ec2b")
+frame = 2
+frame_progress = 0.102266
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
+shape = SubResource("CircleShape2D_lh8cj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 28)
+shape = SubResource("RectangleShape2D_em334")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+position = Vector2(0, -22)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_d0ojy")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
