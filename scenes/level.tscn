@@ -1,13 +1,63 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjraugqk3dyno"]
+[gd_scene load_steps=8 format=3 uid="uid://bjraugqk3dyno"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_b688o"]
 [ext_resource type="PackedScene" uid="uid://b76q281m53mgn" path="res://scenes/example_level.tscn" id="3_6yvos"]
+[ext_resource type="PackedScene" uid="uid://bx57b631otul3" path="res://scenes/example_level_1.tscn" id="3_yaa24"]
+[ext_resource type="LabelSettings" uid="uid://uxe75palyxuv" path="res://new_label_settings.tres" id="5_xmf21"]
+[ext_resource type="PackedScene" uid="uid://by1ttmnc3b34x" path="res://scenes/timer_label.tscn" id="6_nksor"]
+[ext_resource type="AudioStream" uid="uid://535l3577pgrc" path="res://assets/audio/cheering.mp3" id="7_tls58"]
 [ext_resource type="AudioStream" uid="uid://bmy4fixlptb51" path="res://assets/audio/hurt.wav" id="11_700d5"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_b688o")
+levels = Array[PackedScene]([ExtResource("3_6yvos"), ExtResource("3_yaa24")])
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_700d5")
 
-[node name="Level" parent="." instance=ExtResource("3_6yvos")]
+[node name="ThankYou" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 288.0
+
+[node name="MarginContainer" type="MarginContainer" parent="ThankYou"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ThankYou/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ThankYou/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Thanks for playing!"
+label_settings = ExtResource("5_xmf21")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Time" parent="CanvasLayer/Control" instance=ExtResource("6_nksor")]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.0
+anchor_right = 1.0
+offset_left = 0.0
+offset_right = 0.0
+offset_bottom = 24.0
+
+[node name="WinAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_tls58")

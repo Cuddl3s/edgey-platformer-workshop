@@ -56,7 +56,7 @@ position = Vector2(157, 223)
 position = Vector2(97, 258)
 jump_boost = 450
 
-[node name="Exit" parent="Objects" instance=ExtResource("5_0mr5o")]
+[node name="Exit" parent="Objects" groups=["exit"] instance=ExtResource("5_0mr5o")]
 position = Vector2(466, 239)
 
 [node name="Start" parent="Objects" groups=["start"] instance=ExtResource("6_2mb6u")]

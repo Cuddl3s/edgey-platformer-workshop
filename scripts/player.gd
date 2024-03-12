@@ -53,7 +53,7 @@ func handle_jump():
 		velocity.y *= jump_released_adjust
 
 func handle_horizontal_movement(delta) -> int:
-	var direction = 0 if _frozen else Input.get_axis("left", "right")
+	var direction = 0.0 if _frozen else Input.get_axis("left", "right")
 	
 	if direction != 0:
 		animated_sprite.flip_h = direction == -1

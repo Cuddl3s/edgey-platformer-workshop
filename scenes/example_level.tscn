@@ -43,7 +43,7 @@ position = Vector2(248, 80)
 
 [node name="Objects" type="Node2D" parent="."]
 
-[node name="Exit" parent="Objects" instance=ExtResource("4_6fb5j")]
+[node name="Exit" parent="Objects" groups=["exit"] instance=ExtResource("4_6fb5j")]
 position = Vector2(466, 239)
 
 [node name="Start" parent="Objects" groups=["start"] instance=ExtResource("5_awn24")]

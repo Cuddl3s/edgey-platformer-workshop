@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://by1ttmnc3b34x"]
+
+[ext_resource type="LabelSettings" uid="uid://uxe75palyxuv" path="res://new_label_settings.tres" id="1_3naux"]
+[ext_resource type="Script" path="res://scripts/TimeLabel.gd" id="2_g7hwq"]
+
+[node name="Time" type="Label"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "00:00:00"
+label_settings = ExtResource("1_3naux")
+horizontal_alignment = 1
+script = ExtResource("2_g7hwq")
