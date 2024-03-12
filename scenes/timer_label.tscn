@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://by1ttmnc3b34x"]
+[gd_scene load_steps=4 format=3 uid="uid://by1ttmnc3b34x"]
 
-[ext_resource type="LabelSettings" uid="uid://uxe75palyxuv" path="res://new_label_settings.tres" id="1_3naux"]
+[ext_resource type="FontFile" uid="uid://bdvubbiiirdu3" path="res://assets/fonts/joystix monospace.otf" id="1_uodam"]
 [ext_resource type="Script" path="res://scripts/TimeLabel.gd" id="2_g7hwq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w432a"]
+line_spacing = 16.0
+font = ExtResource("1_uodam")
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="Time" type="Label"]
 anchors_preset = 5
@@ -12,6 +18,6 @@ offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
 text = "00:00:00"
-label_settings = ExtResource("1_3naux")
+label_settings = SubResource("LabelSettings_w432a")
 horizontal_alignment = 1
 script = ExtResource("2_g7hwq")

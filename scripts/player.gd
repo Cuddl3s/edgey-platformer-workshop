@@ -18,9 +18,11 @@ class_name Player
 var _coyote_frames = 0
 @export var jump_buffer_frames = 5						## number of frames a jump will be buffered
 var _jump_buffer_frames = 0
+@export var squash_and_stretch: bool = false
 
 var _previous_on_floor = true
 var _frozen = false
+var previous_y = 0.0
 
 func _physics_process(delta):
 	# flags
@@ -36,9 +38,10 @@ func _physics_process(delta):
 	# Gravity
 	if !is_on_floor():
 		velocity.y += gravity*delta
-		
+		previous_y = velocity.y
 	move_and_slide()
 	update_animations(direction)
+	if squash_and_stretch: do_squash_and_stretch(_has_landed,previous_y, delta)
 	
 func handle_jump():
 	if _jump_buffer_frames > 0:
@@ -94,4 +97,40 @@ func jump(force):
 	
 func freeze():
 	_frozen = true
+	
+func do_squash_and_stretch(_has_landed, previous_y, delta):
+	"""
+	-- New Code from this Point --
+	If the player is in the air, make scale of sprite
+	based on the y motion value using range_lerp
+	The fast the y motion, 
+	the larger the y stretch, 
+	the larger the x squash
+	"""
+	
+	if not is_on_floor():
+		$AnimatedSprite2D.scale.y = remap(abs(velocity.y), 0, abs(jump_force), 0.75, 1.5)
+		$AnimatedSprite2D.scale.x = remap(abs(velocity.y), 0, abs(jump_force), 1.25, 0.75)
+	
+	"""
+	If there's a floor collision,
+	set squashed scale values based on
+	previous motion
+	"""
+	
+	if _has_landed:
+		print("land squash!")
+		print(previous_y)
+		$AnimatedSprite2D.scale.x = remap(abs(previous_y), 0, 516.66, 1.2, 2.0)
+		$AnimatedSprite2D.scale.y = remap(abs(previous_y), 0, 516.66, 0.8, 0.5)
+	
+	
+	"""
+	lerp function eases sprite scale to default position
+	See article on using delta with lerp:
+		https://www.construct.net/en/blogs/ashleys-blog-2/using-lerp-delta-time-924
+	"""
+	
+	$AnimatedSprite2D.scale.x = lerp($AnimatedSprite2D.scale.x, 1.0, 1 - pow(0.01, delta))
+	$AnimatedSprite2D.scale.y = lerp($AnimatedSprite2D.scale.y, 1.0, 1 - pow(0.01, delta))
 

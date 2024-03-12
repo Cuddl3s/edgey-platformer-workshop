@@ -10,9 +10,11 @@ var player = null
 var current_level_index = 0
 var current_level: Node = null
 var times: Array[int] = []
+@export var enable_music = true
 
 @onready var timer: TimeLabel = $CanvasLayer/Control/Time
 var timer_scene = preload("res://scenes/timer_label.tscn")
+var total_time = 0
 
 func _ready():
 	init_level()	
@@ -20,9 +22,7 @@ func _ready():
 func init_level():
 	if current_level_index >= levels.size() || current_level != null:
 		#Game Over
-		$ThankYou.visible = true
-		timer.visible = false
-		times.map(create_time_label_with_time).map($ThankYou/MarginContainer/VBoxContainer.add_child)
+		prepare_game_over_screen()
 		return
 	current_level = levels[current_level_index].instantiate()
 	add_child(current_level)
@@ -40,10 +40,12 @@ func init_level():
 		if deathzone is Area2D:
 			deathzone.body_entered.connect(_on_death_zone_body_entered)
 	timer.start()
+	if enable_music: $BGMusicPlayer.play()
 	
 func create_time_label_with_time(time: int):
 	var time_label: TimeLabel = timer_scene.instantiate()
 	time_label.set_time(time)
+	total_time += time
 	return time_label
 
 func _process(delta):
@@ -82,3 +84,12 @@ func reset_player():
 	timer.reset()
 	player.global_position = start.get_spawn_position()
 	player.velocity = Vector2.ZERO
+	
+func prepare_game_over_screen():
+	$BGMusicPlayer.stop()
+	win_player.play()
+	$ThankYou.visible = true
+	timer.visible = false
+	times.map(create_time_label_with_time).map($ThankYou/MarginContainer/VBoxContainer.add_child)
+	$ThankYou/MarginContainer/VBoxContainer.add_child(HSeparator.new())
+	$ThankYou/MarginContainer/VBoxContainer.add_child(create_time_label_with_time(total_time))

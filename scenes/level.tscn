@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjraugqk3dyno"]
+[gd_scene load_steps=9 format=3 uid="uid://bjraugqk3dyno"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_b688o"]
 [ext_resource type="PackedScene" uid="uid://b76q281m53mgn" path="res://scenes/example_level.tscn" id="3_6yvos"]
@@ -6,6 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://uxe75palyxuv" path="res://new_label_settings.tres" id="5_xmf21"]
 [ext_resource type="PackedScene" uid="uid://by1ttmnc3b34x" path="res://scenes/timer_label.tscn" id="6_nksor"]
 [ext_resource type="AudioStream" uid="uid://535l3577pgrc" path="res://assets/audio/cheering.mp3" id="7_tls58"]
+[ext_resource type="AudioStream" uid="uid://b2dutbctl01cd" path="res://assets/audio/bgmusic.mp3" id="8_fftcc"]
 [ext_resource type="AudioStream" uid="uid://bmy4fixlptb51" path="res://assets/audio/hurt.wav" id="11_700d5"]
 
 [node name="Level" type="Node2D"]
@@ -61,3 +62,7 @@ offset_bottom = 24.0
 
 [node name="WinAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_tls58")
+
+[node name="BGMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_fftcc")
+volume_db = -30.0

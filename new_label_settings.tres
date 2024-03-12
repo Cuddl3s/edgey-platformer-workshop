@@ -1,7 +1,9 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://uxe75palyxuv"]
 
-[ext_resource type="FontFile" uid="uid://wly4rutmq07c" path="res://assets/fonts/Kenney Pixel Square.ttf" id="1_s1jff"]
+[ext_resource type="FontFile" uid="uid://bdvubbiiirdu3" path="res://assets/fonts/joystix monospace.otf" id="1_mfvib"]
 
 [resource]
-font = ExtResource("1_s1jff")
+line_spacing = 16.0
+font = ExtResource("1_mfvib")
+outline_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 1)

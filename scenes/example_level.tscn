@@ -44,10 +44,10 @@ position = Vector2(248, 80)
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="Exit" parent="Objects" groups=["exit"] instance=ExtResource("4_6fb5j")]
-position = Vector2(466, 239)
+position = Vector2(466, 240)
 
 [node name="Start" parent="Objects" groups=["start"] instance=ExtResource("5_awn24")]
-position = Vector2(40, 271)
+position = Vector2(40, 272)
 
 [node name="JumpPad2" parent="Objects" instance=ExtResource("6_mb0mn")]
 position = Vector2(249, 226)
