@@ -1,6 +1,8 @@
 extends Node2D
 
-@onready var start = $Objects/Start
+@onready var start = $Level/Objects/Start
+@onready var hurt_player = $AudioStreamPlayer
+var hurt_sound = preload("res://assets/audio/hurt.wav")
 var player = null
 
 func _ready():
@@ -20,10 +22,11 @@ func _process(delta):
 
 
 func _on_death_zone_body_entered(body):
+	hurt_player.play()
 	reset_player()
 
-
 func _on_trap_touched_player():
+	hurt_player.play()
 	reset_player()
 
 func reset_player():

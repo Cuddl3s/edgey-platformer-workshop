@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmi73fvapdnnr"]
+[gd_scene load_steps=16 format=3 uid="uid://cmi73fvapdnnr"]
 
 [ext_resource type="Texture2D" uid="uid://dk1j1mo3w774h" path="res://assets/textures/other/End (Pressed) (64x64).png" id="1_sn7bv"]
 [ext_resource type="Script" path="res://scripts/exit.gd" id="1_yld26"]
+[ext_resource type="AudioStream" uid="uid://535l3577pgrc" path="res://assets/audio/cheering.mp3" id="3_1oasd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rp1wh"]
 atlas = ExtResource("1_sn7bv")
@@ -119,5 +120,8 @@ process_material = SubResource("ParticleProcessMaterial_d0ojy")
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1oasd")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
