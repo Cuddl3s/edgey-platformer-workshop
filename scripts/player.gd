@@ -45,7 +45,7 @@ func handle_jump():
 		_jump_buffer_frames -= 1
 	if Input.is_action_just_pressed("jump") && !is_on_floor():
 		_jump_buffer_frames = jump_buffer_frames
-	elif (_jump_buffer_frames > 0 && is_on_floor()) || Input.is_action_just_pressed("jump") && (is_on_floor() || _coyote_frames > 0):
+	if (_jump_buffer_frames > 0 && is_on_floor()) || Input.is_action_just_pressed("jump") && (is_on_floor() || _coyote_frames > 0):
 		_jump_buffer_frames = 0
 		_coyote_frames = 0
 		jump(jump_force)

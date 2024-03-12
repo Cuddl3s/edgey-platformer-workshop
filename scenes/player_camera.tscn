@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ci4afenik8bvi"]
+
+[node name="Camera2D" type="Camera2D"]
+offset = Vector2(2.08165e-12, -64)
+limit_left = 0
+limit_top = 64
+limit_right = 1024
+limit_bottom = 640
+drag_vertical_enabled = true
+editor_draw_limits = true

@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var start = $Level/Objects/Start
+@onready var start = get_tree().get_first_node_in_group("start")
 @onready var hurt_player = $AudioStreamPlayer
 var hurt_sound = preload("res://assets/audio/hurt.wav")
 var player = null
@@ -12,6 +12,10 @@ func _ready():
 	var traps = get_tree().get_nodes_in_group("traps")
 	for trap in traps:
 		trap.touched_player.connect(_on_trap_touched_player)
+	var deathzones = get_tree().get_nodes_in_group("deathzone")
+	for deathzone in deathzones:
+		if deathzone is Area2D:
+			deathzone.body_entered.connect(_on_death_zone_body_entered)
 	
 
 func _process(delta):
